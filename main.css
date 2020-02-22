@@ -1,0 +1,105 @@
+* {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.incorrect {
+  background-color: red;
+  color: black;
+}
+
+#board {
+  height: auto;
+  width: 63vh;
+  margin: 10px auto;
+  border-width: 1px;
+  border-style: solid;
+  font-size: 45px;
+  text-align: center;
+  font-weight: 200;
+}
+
+.board-row {
+  border: 1px solid;
+  height: 7vh;  
+  display: flex;
+}
+.board-row:nth-child(3n) {
+  border-bottom: 5px solid;
+}
+.board-row:last-child {
+  border-bottom: none;  
+}
+
+.board-col {
+  width: 7vh;
+  height: 7vh;
+  border-right: 1px solid;
+}
+.board-col:nth-child(3n) {
+  border-right: 5px solid;
+}
+.board-col:last-child {
+  border-right: none;
+}
+
+.modal-wrapper {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.4);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.modal {
+  display: inherit;
+  width: 70vw;
+  height: 50vh;
+  margin: 15vh auto;
+  background-color: gray;
+  padding: 10%;
+}
+.buttons > button {
+  border: none;
+  background: black;
+  color: white;
+  font-size: 32px;  
+  height: 50px;
+  width: 50px;
+}
+.buttons {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+}
+.style-button {
+  height: 50px;
+  width: 50px;
+  margin-right: 20px;
+  border: 1px solid gray;
+}
+.btn {
+  font-size: 32px;
+  background: white;
+  color: black;
+  margin: 0 auto;
+  display: block;
+  border-radius: 5px;
+}
+.message-board {
+  height: 100px;
+  width: 80vw;
+  margin: 5px auto;
+  border: 1px solid;
+  padding: 10px;
+  font-size: 24px;  
+}
+
+.user-input {
+  font-weight: 400;
+}
+
+.replay-btn {
+  visibility: hidden;
+}
