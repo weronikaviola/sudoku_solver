@@ -106,3 +106,22 @@
 .replay-btn {
   visibility: hidden;
 }
+
+@media only screen and (max-width: 812px) {
+  #board {
+    width: 90vw;
+    height: 90vw;
+    font-size: 18px;
+  }
+  .board-row {
+    height: 10vw;
+  }
+  .board-col {
+    height: 10vw;
+    width: 10vw;
+  }
+
+  .message-board {
+    font-size: 16px;
+  }
+}
