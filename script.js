@@ -5,7 +5,10 @@ const styles = {
       color: "white",
       backgroundColor: "black",
       borderColor: "white",
-    }
+    },
+    modal: {
+      backgroundColor: "#F8EFED",
+    },
   },
   bright: {
     identifyingColor: "#FFFAFA",
@@ -13,7 +16,10 @@ const styles = {
       color: "black",
       backgroundColor: "white",
       borderColor: "black",
-    }
+    },
+    modal: {
+      backgroundColor: "#ACA9A8",
+    },
   },
   green: {
     identifyingColor: "#228B22",
@@ -21,7 +27,10 @@ const styles = {
       color: "#006400",
       backgroundColor: "#00FF00",
       borderColor: "#006400",
-    }
+    },
+    modal: {
+      backgroundColor: "#95B47F",
+    },
   },
   red: {
     identifyingColor: "#FF6347",
@@ -29,8 +38,10 @@ const styles = {
       backgroundColor: "#8B0000",
       color: "#FF0000",
       borderColor: "#800000",
-    }
-
+    },
+    modal: {
+      backgroundColor: "#BF4220",
+    },
   }
 }
 
@@ -54,7 +65,7 @@ function initialize() {
   initializeStyle("default");
   initializeStyleSection();
   initializeBoard();
-  displayMessage("welcome :)");
+  displayMessage("welcome! click on the cell to add your numbers");
   addEventListeners();
 }
 
@@ -129,12 +140,14 @@ function editField(evt) {
   const targetField = evt.target;
   const classes = targetField.className.replace(" ", ".");
   const targetElement = document.querySelector(`.${classes}`);
-  openModal();
+  if (targetElement) {
+    openModal();
+  }
 
   function openModal() {
     modalWrapper.style.display = "block";
-    modalDiv.style.display = "block";
     modalDiv.addEventListener("click", setNumber);
+    modalWrapper.addEventListener("click", closeModal);
     document.addEventListener("keydown", listenForEscape);
   
     function setNumber(evt) {
@@ -156,7 +169,7 @@ function editField(evt) {
   
     function closeModal() {
       modalDiv.removeEventListener("click", setNumber);
-      modalDiv.style.display = "none";
+      modalWrapper.removeEventListener("click", closeModal);
       modalWrapper.style.display = "none";
     }
   }
@@ -182,6 +195,9 @@ function initializeStyle(name) {
   Object.keys(newStyle.attributes).forEach(key => {
     body.style[key] = newStyle.attributes[key];
   });
+  Object.keys(newStyle.modal).forEach(key => {
+    modalDiv.style[key] = newStyle.modal[key];
+  });
 }
 
 function initializeStyleSection() {
@@ -205,10 +221,10 @@ function startSolving() {
   if (validBoard) {
     solveSudoku(0, 0);
     displayMessage("🌸🌸🌸🌸🌸🌸")
-    replayBtn.style.visibility = "visible";
   } else {
     displayNotSolvedMessage();
   }
+  replayBtn.style.visibility = "visible";
 }
 
 function solveSudoku(r, c) {
@@ -241,6 +257,12 @@ function solveSudoku(r, c) {
 function setBoardValue(r, c, value) {
   const element = document.querySelector(`.col-${r}-${c}`);
   element.textContent = value;
+  if (element.classList.contains("incorrect")) {
+    element.classList.remove("incorrect");
+  }
+  if (element.classList.contains("user-input")) {
+    element.classList.remove("user-input");
+  }
 }
 
 function validateUserInputs() {

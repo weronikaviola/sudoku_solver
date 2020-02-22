@@ -58,6 +58,7 @@
   margin: 15vh auto;
   background-color: gray;
   padding: 10%;
+  box-shadow: 2px 15px 50px gray;
 }
 .buttons > button {
   border: none;
@@ -66,12 +67,14 @@
   font-size: 32px;  
   height: 50px;
   width: 50px;
+  justify-self: center;
 }
 .buttons {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 10px;
+  margin: 0 auto;
 }
 .style-button {
   height: 50px;
